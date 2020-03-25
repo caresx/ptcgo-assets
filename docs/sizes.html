@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<style>
+  input {
+    width: 40px;
+  }
+
+  main {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  main > img {
+    margin-right: 20px;
+    margin-bottom: 15px;
+  }
+</style>
+
+<label>Image width: <input id="imgwidth" value="84" type="number" /> px</label>
+<label><input type="radio" name="type" value="cards" checked /> Cards</label>
+<label><input type="radio" name="type" value="packs" /> Packs</label>
+
+<main>
+  <img data-type="cards" src="../sources/card/SSH/138.png" alt="Zacian V" />
+  <img data-type="cards" src="../sources/card/BLW/114.png" alt="Zekrom" />
+  <img data-type="cards" src="../sources/card/BCR/142.png" alt="Keldeo EX" />
+  <img data-type="cards" src="../sources/card/EVO/79.png" alt="Maintenance" />
+  <img data-type="cards" src="../sources/card/EVO/60.png" alt="Machamp BREAK" />
+  <img data-type="cards" src="../sources/card/FLI/SV65.png" alt="Zygarde GX" />
+  <img data-type="cards" src="../sources/card/FLI/117.png" alt="Beast Energy" />
+  <img data-type="cards" src="../sources/card/FLI/127.png" alt="Ultra Necrozma GX" />
+  <img data-type="cards" src="../sources/card/PRC/13.png" alt="Surskit" />
+  <img data-type="cards" src="../sources/card/PRC/108.png" alt="Kingdra" />
+  <img data-type="cards" src="../sources/card/PRC/135.png" alt="Rare Candy" />
+  <img data-type="cards" src="../sources/card/HS/87.png" alt="Vulpix" />
+  <img data-type="cards" src="../sources/card/UPR/172.png" alt="Lunala GX" />
+  <img data-type="cards" src="../sources/card/UPR/129.png" alt="Missing Clover" />
+  <img data-type="cards" src="../sources/card/UPR/1.png" alt="Exeggcute" />
+  <img data-type="cards" src="../sources/card/PLB/61.png" alt="Escavalier" />
+  <img data-type="cards" src="../sources/card/PLB/78.png" alt="Caitlin" />
+  <img data-type="cards" src="../sources/card/DET/2.png" alt="Ludicolo" />
+  <img data-type="cards" src="../sources/card/BKT/151.png" alt="Burning Energy" />
+  <img data-type="cards" src="../sources/card/BKT/156.png" alt="M Glalie EX" />
+  <img data-type="cards" src="../sources/card/SUM/149.png" alt="Team Skull Grunt" />
+  <img
+    data-type="cards"
+    src="../sources/card/CEC/190.png"
+    alt="Dragonium Z: Dragon Claw"
+  />
+  <img data-type="cards" src="../sources/card/CEC/219.png" alt="Alolan Persian GX" />
+  <img
+    data-type="cards"
+    src="../sources/card/CEC/221.png"
+    alt="Arceus & Dialga & Palkia Tag Team GX"
+  />
+  <img data-type="cards" src="../sources/card/CEC/230.png" alt="Lillie's Full Force" />
+  <img
+    data-type="cards"
+    src="../sources/card/CEC/254.png"
+    alt="Reshiram & Zekrom Tag Team GX"
+  />
+  <img data-type="cards" src="../sources/card/CEC/270.png" alt="Tag Call" />
+  <img data-type="cards" src="../sources/card/UD/79.png" alt="Darkness Energy" />
+  <img data-type="cards" src="../sources/card/UD/89.png" alt="Deoxys & Rayquaza LEGEND" />
+  <img data-type="cards" src="../sources/card/SSH/23.png" alt="Ninetales" />
+  <img data-type="cards" src="../sources/card/SSH/142.png" alt="Snorlax VMAX" />
+  <img data-type="cards" src="../sources/card/SSH/207.png" alt="Bede" />
+  <img data-type="cards" src="../sources/card/SSH/216.png" alt="Quick Ball" />
+  <img data-type="cards" src="../sources/card/PR-SM/SM67.png" alt="Celesteela GX" />
+  <img
+    data-type="cards"
+    src="../sources/card/PR-SM/SM191.png"
+    alt="Mewtwo & Mew Tag Team GX"
+  />
+  <img data-type="cards" src="../sources/card/PR-SM/SM218.png" alt="Buzzwole" />
+  <img data-type="cards" src="../sources/card/PR-SM/SM228.png" alt="Armored Mewtwo" />
+  <img data-type="cards" src="../sources/card/DCR/6.png" alt="Team Aqua's Kyogre EX" />
+  <img data-type="cards" src="../sources/card/DCR/19.png" alt="Team Magma's Mightyena" />
+  <img data-type="cards" src="../sources/card/DCR/23.png" alt="Aqua Diffuser" />
+  <img data-type="cards" src="../sources/card/DCR/28.png" alt="Team Aqua's Secret Base" />
+  <img data-type="packs" src="../external/expansion/pack/EVO.png" alt="EVO" />
+  <img data-type="packs" src="../external/expansion/pack/EVOm.png" alt="EVOm" />
+  <img data-type="packs" src="../external/expansion/pack/EVOp.png" alt="EVOp" />
+</main>
+
+<script>
+  function setImgWidth(px) {
+    for (const img of Array.from(document.querySelectorAll('img'))) {
+      img.width = px;
+    }
+  }
+  function setImgVisibility(type) {
+    for (const card of document.querySelectorAll(`img:not([data-type="${type}"])`)) {
+      card.style.display = 'none';
+    }
+    for (const card of document.querySelectorAll(`img[data-type="${type}"]`)) {
+      card.style.display = 'initial';
+    }
+  }
+  document.querySelector('#imgwidth').oninput = e => setImgWidth(e.currentTarget.value);
+  setImgWidth(document.querySelector('#imgwidth').value);
+  for (const input of Array.from(document.querySelectorAll('input[name="type"]'))) {
+    input.onchange = () => setImgVisibility(input.value);
+  }
+  setImgVisibility(document.querySelector('input[name="type"]:checked').value);
+</script>
