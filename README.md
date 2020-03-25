@@ -1,3 +1,7 @@
+# ptcgo-assets
+
+Pokemon TCG Online card images and expansion logos and symbols. Powered by malie.io and pokemontcg.io.
+
 ## external/expansion
 
 packs/ originate from bundleCache/en_US_packs\_ and bundleCache/en_US_pcdBoxes\_ for the -p variants.
