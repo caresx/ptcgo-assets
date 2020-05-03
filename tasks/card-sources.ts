@@ -93,16 +93,16 @@ function sourceURL(item: PTCGOItem<CardDefinition>) {
 
   let url = `https://cdn.malie.io/file/malie-io/art/cards/png/en_US/`;
 
-  const seriesName = item
+  const seriesCode = item
     .expansion()
     .series()
-    .name();
+    .code();
   const ptcgoCode = expToPtcgoSetMap[exp.code()];
   // RSP is classified as its own series and also breaks the PTCGOSet-ExpansionCode rule
   if (exp.code() === 'RSP') {
     url += 'RSP/RSP/';
   } else {
-    url += `${seriesName}/${ptcgoCode}-${exp.code().replace(/-/g, '_')}/`;
+    url += `${seriesCode}/${ptcgoCode}-${exp.code().replace(/-/g, '_')}/`;
   }
 
   const discriminant = ['en_US', ptcgoCode];
@@ -154,7 +154,7 @@ function slugifyCardName(name: string) {
   return name
     .toLowerCase()
     .replace(/é/g, 'e')
-    .replace(/['.()#&{}*:—?!♀♂]/g, '')
+    .replace(/['.()#&{}*:—?!♀♂’]/g, '')
     .replace(/ {2}/g, ' ')
     .trim()
     .replace(/[- ]/g, '_');
